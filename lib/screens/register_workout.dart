@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym_tracker_ui/screens/set_container.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -28,9 +29,27 @@ class RegisterWorkout extends StatelessWidget {
                 headerStyle: const HeaderStyle(
                   titleCentered: true,
                 ),
+                calendarStyle: CalendarStyle(
+                  disabledTextStyle: TextStyle(
+                    color: Theme.of(context).colorScheme.onSecondary,
+                  ),
+                  outsideTextStyle: TextStyle(
+                    color: Theme.of(context).colorScheme.onSecondary,
+                  ),
+                ),
               ),
             ),
-          )
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          Card(
+            color: Theme.of(context).colorScheme.surface,
+            child: Padding(
+              padding: const EdgeInsets.all(4),
+              child: SetContainer(),
+            ),
+          ),
         ],
       ),
     );
