@@ -4,6 +4,7 @@ import 'package:gym_tracker_ui/screens/widgets/add_set_cell.dart';
 import 'package:gym_tracker_ui/screens/widgets/empty_cell.dart';
 import 'package:gym_tracker_ui/screens/widgets/field_cell.dart';
 import 'package:gym_tracker_ui/screens/widgets/notes_dialog.dart';
+import 'package:gym_tracker_ui/screens/widgets/register_regular_set_dialog.dart';
 import 'package:gym_tracker_ui/screens/widgets/text_dell.dart';
 import 'package:gym_tracker_ui/screens/widgets/title_cell.dart';
 
@@ -82,8 +83,8 @@ class RegularSetContainer extends StatelessWidget {
                 2: FlexColumnWidth(1),
                 3: FlexColumnWidth(2),
               },
-              children: const <TableRow>[
-                TableRow(
+              children: <TableRow>[
+                const TableRow(
                   children: [
                     TitleCell("Set"),
                     TitleCell("Weight"),
@@ -93,18 +94,32 @@ class RegularSetContainer extends StatelessWidget {
                 ),
                 TableRow(
                   children: [
-                    TitleCell("1"),
-                    FieldCell("120"),
-                    FieldCell("12"),
-                    TextCell("120kg")
+                    const TitleCell("1"),
+                    FieldCell(
+                      title: "120",
+                      onRegisterSet: () {
+                        context.showBottomDialog(const RegisterRegularSet());
+                      },
+                    ),
+                    FieldCell(
+                      title: "12",
+                      onRegisterSet: () {
+                        context.showBottomDialog(const RegisterRegularSet());
+                      },
+                    ),
+                    const TextCell("120kg"),
                   ],
                 ),
                 TableRow(
                   children: [
-                    TitleCell("2"),
-                    EmptyCell(),
-                    AddSetCell(),
-                    TextCell("120kg"),
+                    const TitleCell("2"),
+                    const EmptyCell(),
+                    AddSetCell(
+                      onAddSet: () {
+                        context.showBottomDialog(const RegisterRegularSet());
+                      },
+                    ),
+                    const TextCell("120kg"),
                   ],
                 ),
               ],

@@ -4,6 +4,7 @@ import 'package:gym_tracker_ui/screens/widgets/add_set_cell.dart';
 import 'package:gym_tracker_ui/screens/widgets/empty_cell.dart';
 import 'package:gym_tracker_ui/screens/widgets/field_cell.dart';
 import 'package:gym_tracker_ui/screens/widgets/notes_dialog.dart';
+import 'package:gym_tracker_ui/screens/widgets/register_rir_set_dialog.dart';
 import 'package:gym_tracker_ui/screens/widgets/text_dell.dart';
 import 'package:gym_tracker_ui/screens/widgets/title_cell.dart';
 
@@ -83,8 +84,8 @@ class RIRSetContainer extends StatelessWidget {
                 3: FlexColumnWidth(1),
                 4: FlexColumnWidth(2),
               },
-              children: const <TableRow>[
-                TableRow(
+              children: <TableRow>[
+                const TableRow(
                   children: [
                     TitleCell("Set"),
                     TitleCell("Weight"),
@@ -95,20 +96,39 @@ class RIRSetContainer extends StatelessWidget {
                 ),
                 TableRow(
                   children: [
-                    TitleCell("1"),
-                    FieldCell("120"),
-                    FieldCell("12"),
-                    FieldCell("2"),
-                    TextCell("120kgx10@2")
+                    const TitleCell("1"),
+                    FieldCell(
+                      title: "120",
+                      onRegisterSet: () {
+                        context.showBottomDialog(const RegisterRIRSet());
+                      },
+                    ),
+                    FieldCell(
+                      title: "12",
+                      onRegisterSet: () {
+                        context.showBottomDialog(const RegisterRIRSet());
+                      },
+                    ),
+                    FieldCell(
+                      title: "2",
+                      onRegisterSet: () {
+                        context.showBottomDialog(const RegisterRIRSet());
+                      },
+                    ),
+                    const TextCell("120kgx10@2")
                   ],
                 ),
                 TableRow(
                   children: [
-                    TitleCell("2"),
-                    EmptyCell(),
-                    AddSetCell(),
-                    EmptyCell(),
-                    TextCell("120kgx7@2"),
+                    const TitleCell("2"),
+                    const EmptyCell(),
+                    AddSetCell(
+                      onAddSet: () {
+                        context.showBottomDialog(const RegisterRIRSet());
+                      },
+                    ),
+                    const EmptyCell(),
+                    const TextCell("120kgx7@2"),
                   ],
                 ),
               ],
