@@ -36,9 +36,7 @@ class RegisterWorkout extends StatelessWidget {
                       titleCentered: true,
                     ),
                   ),
-                  const SizedBox(
-                    height: 16,
-                  ),
+                  const SizedBox(height: 16),
                   ElevatedButton.icon(
                     onPressed: () {},
                     icon: const Icon(Icons.add),
@@ -53,6 +51,7 @@ class RegisterWorkout extends StatelessWidget {
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
                   ),
+                  const SizedBox(height: 8),
                 ],
               ),
             ),
