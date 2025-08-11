@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gym_tracker_ui/screens/set_container.dart';
+import 'package:gym_tracker_ui/screens/widgets/set_container.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -14,43 +14,54 @@ class RegisterWorkout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Workout Name")),
-      body: Column(
-        children: [
-          Card(
-            color: Theme.of(context).colorScheme.surface,
-            child: Padding(
-              padding: const EdgeInsets.all(4),
-              child: TableCalendar(
-                firstDay: DateTime.now().add(const Duration(days: -365)),
-                focusedDay: DateTime.now(),
-                lastDay: DateTime.now().add(const Duration(days: 365)),
-                calendarFormat: _calendarFormat,
-                availableCalendarFormats: const {CalendarFormat.week: 'week'},
-                headerStyle: const HeaderStyle(
-                  titleCentered: true,
-                ),
-                calendarStyle: CalendarStyle(
-                  disabledTextStyle: TextStyle(
-                    color: Theme.of(context).colorScheme.onSecondary,
-                  ),
-                  outsideTextStyle: TextStyle(
-                    color: Theme.of(context).colorScheme.onSecondary,
-                  ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Card(
+              color: Theme.of(context).colorScheme.surface,
+              child: Padding(
+                padding: const EdgeInsets.all(4),
+                child: Column(
+                  children: [
+                    TableCalendar(
+                      firstDay: DateTime.now().add(const Duration(days: -365)),
+                      focusedDay: DateTime.now(),
+                      lastDay: DateTime.now().add(const Duration(days: 365)),
+                      calendarFormat: _calendarFormat,
+                      availableCalendarFormats: const {
+                        CalendarFormat.week: 'week'
+                      },
+                      headerStyle: const HeaderStyle(
+                        titleCentered: true,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    ElevatedButton.icon(
+                      onPressed: () {},
+                      icon: const Icon(Icons.add),
+                      label: const Text(
+                        "Add Excercise",
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 8,
+                        ),
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          Card(
-            color: Theme.of(context).colorScheme.surface,
-            child: Padding(
-              padding: const EdgeInsets.all(4),
-              child: SetContainer(),
+            const SizedBox(
+              height: 16,
             ),
-          ),
-        ],
+            const SetContainer(),
+          ],
+        ),
       ),
     );
   }
