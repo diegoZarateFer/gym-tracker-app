@@ -98,6 +98,9 @@ class RegisterRIRSet extends StatelessWidget {
                       ),
                     ),
                   ),
+                  SizedBox(
+                    width: 8,
+                  ),
                   Text(
                     "@",
                     style: TextStyle(

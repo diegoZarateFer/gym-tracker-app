@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gym_tracker_ui/screens/widgets/set_container.dart';
+import 'package:gym_tracker_ui/screens/widgets/regular_set_container.dart';
+import 'package:gym_tracker_ui/screens/widgets/rir_set_container.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -14,54 +15,60 @@ class RegisterWorkout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Workout Name")),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Card(
-              color: Theme.of(context).colorScheme.surface,
-              child: Padding(
-                padding: const EdgeInsets.all(4),
-                child: Column(
-                  children: [
-                    TableCalendar(
-                      firstDay: DateTime.now().add(const Duration(days: -365)),
-                      focusedDay: DateTime.now(),
-                      lastDay: DateTime.now().add(const Duration(days: 365)),
-                      calendarFormat: _calendarFormat,
-                      availableCalendarFormats: const {
-                        CalendarFormat.week: 'week'
-                      },
-                      headerStyle: const HeaderStyle(
-                        titleCentered: true,
-                      ),
+      body: Column(
+        children: [
+          Card(
+            color: Theme.of(context).colorScheme.surface,
+            child: Padding(
+              padding: const EdgeInsets.all(4),
+              child: Column(
+                children: [
+                  TableCalendar(
+                    firstDay: DateTime.now().add(const Duration(days: -365)),
+                    focusedDay: DateTime.now(),
+                    lastDay: DateTime.now().add(const Duration(days: 365)),
+                    calendarFormat: _calendarFormat,
+                    availableCalendarFormats: const {
+                      CalendarFormat.week: 'week'
+                    },
+                    headerStyle: const HeaderStyle(
+                      titleCentered: true,
                     ),
-                    const SizedBox(
-                      height: 16,
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  ElevatedButton.icon(
+                    onPressed: () {},
+                    icon: const Icon(Icons.add),
+                    label: const Text(
+                      "Add Excercise",
                     ),
-                    ElevatedButton.icon(
-                      onPressed: () {},
-                      icon: const Icon(Icons.add),
-                      label: const Text(
-                        "Add Excercise",
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 8,
                       ),
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 8,
-                        ),
-                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      ),
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-            const SizedBox(
-              height: 16,
+          ),
+          const SizedBox(height: 16),
+          const Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  RIRSetContainer(),
+                  SizedBox(height: 16),
+                  RegularSetContainer(),
+                ],
+              ),
             ),
-            const SetContainer(),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

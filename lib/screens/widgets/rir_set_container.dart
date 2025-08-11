@@ -7,8 +7,8 @@ import 'package:gym_tracker_ui/screens/widgets/notes_dialog.dart';
 import 'package:gym_tracker_ui/screens/widgets/text_dell.dart';
 import 'package:gym_tracker_ui/screens/widgets/title_cell.dart';
 
-class SetContainer extends StatelessWidget {
-  const SetContainer({super.key});
+class RIRSetContainer extends StatelessWidget {
+  const RIRSetContainer({super.key});
 
   @override
   Widget build(BuildContext context) {

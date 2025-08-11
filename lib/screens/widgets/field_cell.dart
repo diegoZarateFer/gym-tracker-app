@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gym_tracker_ui/screens/extensions/context_ext.dart';
-import 'package:gym_tracker_ui/screens/widgets/register_regular_set_dialog.dart';
+import 'package:gym_tracker_ui/screens/widgets/register_rir_set_dialog.dart';
 
 class FieldCell extends StatelessWidget {
   const FieldCell(
@@ -15,7 +15,7 @@ class FieldCell extends StatelessWidget {
     return TableCell(
       child: GestureDetector(
         onTap: () {
-          context.showBottomDialog(const RegisterRegularSet());
+          context.showBottomDialog(const RegisterRIRSet());
         },
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 2),
