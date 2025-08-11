@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gym_tracker_ui/screens/set_container.dart';
+import 'package:gym_tracker_ui/screens/widgets/set_container.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -38,14 +38,18 @@ class RegisterWorkout extends StatelessWidget {
                     const SizedBox(
                       height: 16,
                     ),
-                    ElevatedButton(
+                    ElevatedButton.icon(
                       onPressed: () {},
-                      child: const Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(Icons.add),
-                          Text("Add Excercise"),
-                        ],
+                      icon: const Icon(Icons.add),
+                      label: const Text(
+                        "Add Excercise",
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 8,
+                        ),
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       ),
                     ),
                   ],
