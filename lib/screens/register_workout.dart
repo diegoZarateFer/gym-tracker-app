@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gym_tracker_ui/screens/widgets/regular_set_container.dart';
 import 'package:gym_tracker_ui/screens/widgets/rir_set_container.dart';
+import 'package:gym_tracker_ui/screens/widgets/rpe_set_container.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -64,6 +65,8 @@ class RegisterWorkout extends StatelessWidget {
                   RIRSetContainer(),
                   SizedBox(height: 16),
                   RegularSetContainer(),
+                  SizedBox(height: 16),
+                  RPESetContainer(),
                 ],
               ),
             ),
