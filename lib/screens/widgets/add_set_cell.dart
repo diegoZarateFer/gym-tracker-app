@@ -20,7 +20,7 @@ class AddSetCell extends StatelessWidget {
           onTap: onAddSet,
           child: GestureDetector(
             child: const Icon(
-              Icons.add_circle_outlined,
+              Icons.note_add,
             ),
           ),
         ),

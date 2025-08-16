@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gym_tracker_ui/screens/widgets/regular_set_container.dart';
-import 'package:gym_tracker_ui/screens/widgets/rir_set_container.dart';
-import 'package:gym_tracker_ui/screens/widgets/rpe_set_container.dart';
+import 'package:gym_tracker_ui/screens/widgets/regular_excercise_log.dart';
+import 'package:gym_tracker_ui/screens/widgets/rir_excercise_log.dart';
+import 'package:gym_tracker_ui/screens/widgets/rpe_excercise_log.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -61,11 +61,11 @@ class RegisterWorkout extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  RIRSetContainer(),
+                  RIRExcerciseLog(),
                   SizedBox(height: 16),
-                  RegularSetContainer(),
+                  RegularExcerciseLog(),
                   SizedBox(height: 16),
-                  RPESetContainer(),
+                  RPEExcerciseLog(),
                 ],
               ),
             ),

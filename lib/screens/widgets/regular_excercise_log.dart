@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:gym_tracker_ui/screens/extensions/context_ext.dart';
 import 'package:gym_tracker_ui/screens/widgets/add_set_cell.dart';
 import 'package:gym_tracker_ui/screens/widgets/empty_cell.dart';
+import 'package:gym_tracker_ui/screens/widgets/excercise_log_header.dart';
 import 'package:gym_tracker_ui/screens/widgets/field_cell.dart';
-import 'package:gym_tracker_ui/screens/widgets/notes_dialog.dart';
 import 'package:gym_tracker_ui/screens/widgets/register_regular_set_dialog.dart';
 import 'package:gym_tracker_ui/screens/widgets/text_dell.dart';
 import 'package:gym_tracker_ui/screens/widgets/title_cell.dart';
 
-class RegularSetContainer extends StatelessWidget {
-  const RegularSetContainer({super.key});
+class RegularExcerciseLog extends StatelessWidget {
+  const RegularExcerciseLog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,41 +30,7 @@ class RegularSetContainer extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.surface,
-                borderRadius:
-                    const BorderRadius.vertical(top: Radius.circular(12)),
-              ),
-              child: Row(
-                children: [
-                  const Text(
-                    'Regular Log Excersice',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const Spacer(),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.history),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      context.showBottomDialog(const ExerciseNotes());
-                    },
-                    icon: const Icon(Icons.edit_note_sharp),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.settings),
-                  ),
-                ],
-              ),
-            ),
+            const ExcerciseLogHeader(title: "Regular Log Excercise"),
             Divider(
               height: 1,
               thickness: 1,
