@@ -50,6 +50,7 @@ class RegisterRIRSet extends StatelessWidget {
                 children: [
                   Spacer(),
                   Expanded(
+                    flex: 2,
                     child: TextField(
                       textAlignVertical: TextAlignVertical.center,
                       keyboardType: TextInputType.numberWithOptions(),
@@ -86,6 +87,7 @@ class RegisterRIRSet extends StatelessWidget {
                     width: 8,
                   ),
                   Expanded(
+                    flex: 2,
                     child: TextField(
                       textAlignVertical: TextAlignVertical.center,
                       keyboardType: TextInputType.numberWithOptions(),
@@ -112,6 +114,7 @@ class RegisterRIRSet extends StatelessWidget {
                     width: 8,
                   ),
                   Expanded(
+                    flex: 2,
                     child: TextField(
                       textAlignVertical: TextAlignVertical.center,
                       keyboardType: TextInputType.numberWithOptions(),
