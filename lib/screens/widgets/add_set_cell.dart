@@ -21,7 +21,6 @@ class AddSetCell extends StatelessWidget {
           child: GestureDetector(
             child: const Icon(
               Icons.add_circle_outlined,
-              color: Colors.black,
             ),
           ),
         ),
