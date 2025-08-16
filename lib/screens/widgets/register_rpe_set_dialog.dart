@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym_tracker_ui/screens/widgets/modal_bottom_handle.dart';
 
 class RegisterRPESet extends StatefulWidget {
   const RegisterRPESet({super.key});
@@ -26,6 +27,8 @@ class _RegisterRPESetState extends State<RegisterRPESet> {
           padding: EdgeInsets.fromLTRB(2, 2, 2, keyboardSpace + 16),
           child: Column(
             children: [
+             const ModalBottomHandle(),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

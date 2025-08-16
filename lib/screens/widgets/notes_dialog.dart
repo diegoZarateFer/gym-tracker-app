@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym_tracker_ui/screens/widgets/modal_bottom_handle.dart';
 
 class ExerciseNotes extends StatelessWidget {
   const ExerciseNotes({super.key});
@@ -13,6 +14,7 @@ class ExerciseNotes extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(2, 2, 2, keyboardSpace + 16),
           child: Column(
             children: [
+              const ModalBottomHandle(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -49,7 +51,7 @@ class ExerciseNotes extends StatelessWidget {
               const TextField(
                 textAlignVertical: TextAlignVertical.center,
                 textAlign: TextAlign.start,
-                maxLines: 4,
+                maxLines: 8 ,
                 decoration: InputDecoration(
                   counterText: "",
                   border: OutlineInputBorder(),

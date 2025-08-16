@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym_tracker_ui/screens/widgets/modal_bottom_handle.dart';
 
 class RegisterRIRSet extends StatelessWidget {
   const RegisterRIRSet({super.key});
@@ -13,6 +14,7 @@ class RegisterRIRSet extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(2, 2, 2, keyboardSpace + 16),
           child: Column(
             children: [
+             const ModalBottomHandle(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
