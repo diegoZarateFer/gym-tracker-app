@@ -95,9 +95,6 @@ class _ExcerciseSettingsPageState extends State<ExcerciseSettingsPage> {
                         groupValue: _selectedIntensityIndicator,
                         subtitle: const Text(
                           "Measures how hard an excercise feels.",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
                         ),
                         title: const Text(
                           "RIR",
