@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:gym_tracker_ui/screens/widgets/regular_excercise_log.dart';
-import 'package:gym_tracker_ui/screens/widgets/rir_excercise_log.dart';
-import 'package:gym_tracker_ui/screens/widgets/rpe_excercise_log.dart';
+import 'package:gym_tracker_ui/pages/widgets/regular_excercise_log.dart';
+import 'package:gym_tracker_ui/pages/widgets/rir_excercise_log.dart';
+import 'package:gym_tracker_ui/pages/widgets/rpe_excercise_log.dart';
+import 'package:gym_tracker_ui/pages/widgets/week_calendar.dart';
 import 'package:intl/intl.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 final formatter = DateFormat.yMd();
 
-class RegisterWorkout extends StatelessWidget {
-  const RegisterWorkout({super.key});
+class RegisterWorkoutPage extends StatelessWidget {
+  static const String route = "register-workout";
 
-  final CalendarFormat _calendarFormat = CalendarFormat.week;
-
+  const RegisterWorkoutPage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Workout Name")),
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.background,
+        centerTitle: true,
+        title: const Text("Workout Name"),
+      ),
       body: Column(
         children: [
           Card(
@@ -24,18 +27,7 @@ class RegisterWorkout extends StatelessWidget {
               padding: const EdgeInsets.all(4),
               child: Column(
                 children: [
-                  TableCalendar(
-                    firstDay: DateTime.now().add(const Duration(days: -365)),
-                    focusedDay: DateTime.now(),
-                    lastDay: DateTime.now().add(const Duration(days: 365)),
-                    calendarFormat: _calendarFormat,
-                    availableCalendarFormats: const {
-                      CalendarFormat.week: 'week'
-                    },
-                    headerStyle: const HeaderStyle(
-                      titleCentered: true,
-                    ),
-                  ),
+                  const WeekCalendar(),
                   const SizedBox(height: 16),
                   ElevatedButton.icon(
                     onPressed: () {},

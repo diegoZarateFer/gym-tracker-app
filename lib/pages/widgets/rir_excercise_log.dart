@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:gym_tracker_ui/screens/extensions/context_ext.dart';
-import 'package:gym_tracker_ui/screens/widgets/add_set_cell.dart';
-import 'package:gym_tracker_ui/screens/widgets/empty_cell.dart';
-import 'package:gym_tracker_ui/screens/widgets/excercise_log_header.dart';
-import 'package:gym_tracker_ui/screens/widgets/field_cell.dart';
-import 'package:gym_tracker_ui/screens/widgets/register_rpe_set_dialog.dart';
-import 'package:gym_tracker_ui/screens/widgets/text_dell.dart';
-import 'package:gym_tracker_ui/screens/widgets/title_cell.dart';
+import 'package:gym_tracker_ui/pages/extensions/context_ext.dart';
+import 'package:gym_tracker_ui/pages/widgets/add_set_cell.dart';
+import 'package:gym_tracker_ui/pages/widgets/empty_cell.dart';
+import 'package:gym_tracker_ui/pages/widgets/field_cell.dart';
+import 'package:gym_tracker_ui/pages/widgets/dialogs/register_rir_set_dialog.dart';
+import 'package:gym_tracker_ui/pages/widgets/excercise_log_header.dart';
+import 'package:gym_tracker_ui/pages/widgets/text_dell.dart';
+import 'package:gym_tracker_ui/pages/widgets/title_cell.dart';
 
-class RPEExcerciseLog extends StatelessWidget {
-  const RPEExcerciseLog({super.key});
+class RIRExcerciseLog extends StatelessWidget {
+  const RIRExcerciseLog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class RPEExcerciseLog extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-           const ExcerciseLogHeader(title: "RPE Log Excercise"),
+            const ExcerciseLogHeader(title: "RIR Log Excercise"),
             Divider(
               height: 1,
               thickness: 1,
@@ -56,7 +56,7 @@ class RPEExcerciseLog extends StatelessWidget {
                     TitleCell("Set"),
                     TitleCell("Weight"),
                     TitleCell("Reps"),
-                    TitleCell("RPE"),
+                    TitleCell("RIR"),
                     TitleCell("Previous"),
                   ],
                 ),
@@ -66,22 +66,22 @@ class RPEExcerciseLog extends StatelessWidget {
                     FieldCell(
                       title: "120",
                       onRegisterSet: () {
-                        context.showBottomDialog(const RegisterRPESet());
+                        context.showBottomDialog(const RegisterRIRSet());
                       },
                     ),
                     FieldCell(
                       title: "12",
                       onRegisterSet: () {
-                        context.showBottomDialog(const RegisterRPESet());
+                        context.showBottomDialog(const RegisterRIRSet());
                       },
                     ),
                     FieldCell(
                       title: "2",
                       onRegisterSet: () {
-                        context.showBottomDialog(const RegisterRPESet());
+                        context.showBottomDialog(const RegisterRIRSet());
                       },
                     ),
-                    const TextCell("120kgx10@8")
+                    const TextCell("120kgx10@2")
                   ],
                 ),
                 TableRow(
@@ -90,11 +90,11 @@ class RPEExcerciseLog extends StatelessWidget {
                     const EmptyCell(),
                     AddSetCell(
                       onAddSet: () {
-                        context.showBottomDialog(const RegisterRPESet());
+                        context.showBottomDialog(const RegisterRIRSet());
                       },
                     ),
                     const EmptyCell(),
-                    const TextCell("120kgx7@8"),
+                    const TextCell("120kgx7@2"),
                   ],
                 ),
               ],

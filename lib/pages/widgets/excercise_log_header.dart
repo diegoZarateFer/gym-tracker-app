@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gym_tracker_ui/screens/extensions/context_ext.dart';
-import 'package:gym_tracker_ui/screens/widgets/notes_dialog.dart';
+import 'package:gym_tracker_ui/pages/excercise_settings_page.dart';
+import 'package:gym_tracker_ui/pages/extensions/context_ext.dart';
+import 'package:gym_tracker_ui/pages/widgets/dialogs/notes_dialog.dart';
 
 class ExcerciseLogHeader extends StatelessWidget {
   const ExcerciseLogHeader({
@@ -21,9 +22,9 @@ class ExcerciseLogHeader extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const Text(
-            'RIR Log Excersice',
-            style: TextStyle(
+          Text(
+            title,
+            style: const TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
@@ -40,7 +41,10 @@ class ExcerciseLogHeader extends StatelessWidget {
             icon: const Icon(Icons.edit_note_sharp),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context)
+                  .pushNamed(ExcerciseSettingsPage.route);
+            },
             icon: const Icon(Icons.settings),
           ),
         ],

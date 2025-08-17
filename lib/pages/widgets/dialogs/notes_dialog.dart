@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gym_tracker_ui/screens/widgets/modal_bottom_handle.dart';
+import 'package:gym_tracker_ui/pages/widgets/modal_bottom_handle.dart';
 
 class ExerciseNotes extends StatelessWidget {
   const ExerciseNotes({super.key});

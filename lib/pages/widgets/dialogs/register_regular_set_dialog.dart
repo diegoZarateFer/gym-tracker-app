@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gym_tracker_ui/screens/widgets/modal_bottom_handle.dart';
+import 'package:gym_tracker_ui/pages/widgets/modal_bottom_handle.dart';
 
-class RegisterRIRSet extends StatelessWidget {
-  const RegisterRIRSet({super.key});
+class RegisterRegularSet extends StatelessWidget {
+  const RegisterRegularSet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class RegisterRIRSet extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(2, 2, 2, keyboardSpace + 16),
           child: Column(
             children: [
-             const ModalBottomHandle(),
+              const ModalBottomHandle(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -52,7 +52,6 @@ class RegisterRIRSet extends StatelessWidget {
                 children: [
                   Spacer(),
                   Expanded(
-                    flex: 2,
                     child: TextField(
                       textAlignVertical: TextAlignVertical.center,
                       keyboardType: TextInputType.numberWithOptions(),
@@ -89,39 +88,11 @@ class RegisterRIRSet extends StatelessWidget {
                     width: 8,
                   ),
                   Expanded(
-                    flex: 2,
                     child: TextField(
                       textAlignVertical: TextAlignVertical.center,
                       keyboardType: TextInputType.numberWithOptions(),
                       textAlign: TextAlign.center,
                       maxLength: 5,
-                      maxLines: 1,
-                      decoration: InputDecoration(
-                        counterText: "",
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 8,
-                  ),
-                  Text(
-                    "@",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 8,
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: TextField(
-                      textAlignVertical: TextAlignVertical.center,
-                      keyboardType: TextInputType.numberWithOptions(),
-                      textAlign: TextAlign.center,
-                      maxLength: 2,
                       maxLines: 1,
                       decoration: InputDecoration(
                         counterText: "",
