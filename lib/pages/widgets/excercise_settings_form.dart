@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym_tracker_ui/pages/extensions/context_ext.dart';
 import 'package:gym_tracker_ui/pages/widgets/intensity_indicator_selector.dart';
 import 'package:gym_tracker_ui/pages/widgets/unit_selector.dart';
 
@@ -11,8 +12,6 @@ class ExcerciseSettingsForm extends StatefulWidget {
   final void Function(
       {required String name,
       required String description,
-      required IntensityIndicators intensityIndicator,
-      required Units unit,
       required int minNumberOfReps,
       required int maxNumberOfReps}) onSaveExcerciseSettings;
 
@@ -31,14 +30,6 @@ class _ExcerciseSettingsFormState extends State<ExcerciseSettingsForm> {
   int _selectedRepRangeStart = 5;
   int _selectedRepRangeEnd = 10;
 
-  /// Indicador de intensidad seleccionado.
-  ///
-  IntensityIndicators _selectedIntensityIndicator = IntensityIndicators.none;
-
-  /// Unidad de medida seleccionada.
-  ///
-  Units _selectedUnit = Units.kgs;
-
   ///TODO: Agregar validaciones a los campos.
   ///
 
@@ -51,28 +42,12 @@ class _ExcerciseSettingsFormState extends State<ExcerciseSettingsForm> {
     });
   }
 
-  void _changeIntensityIndicatorHandler(
-      IntensityIndicators? selectedIndicator) {
-    setState(() {
-      _selectedIntensityIndicator =
-          selectedIndicator ?? IntensityIndicators.none;
-    });
-  }
-
-  void _changeUnitHandler(Units? selectedUnit) {
-    setState(() {
-      _selectedUnit = selectedUnit ?? Units.units;
-    });
-  }
-
   void _onSaveExcerciseSettings() {
     widget.onSaveExcerciseSettings(
       description: _excerciseDescriptionController.text,
       name: _excerciseNameController.text,
-      intensityIndicator: _selectedIntensityIndicator,
       minNumberOfReps: _selectedRepRangeStart,
       maxNumberOfReps: _selectedRepRangeEnd,
-      unit: _selectedUnit,
     );
   }
 
@@ -85,87 +60,125 @@ class _ExcerciseSettingsFormState extends State<ExcerciseSettingsForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TextField(
-          controller: _excerciseNameController,
-          textAlignVertical: TextAlignVertical.center,
-          maxLines: 1,
-          maxLength: 30,
-          decoration: const InputDecoration(
-            counterText: "",
-            label: Text("Excercise Name"),
-            border: OutlineInputBorder(),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          TextField(
+            controller: _excerciseNameController,
+            textAlignVertical: TextAlignVertical.center,
+            maxLines: 1,
+            maxLength: 30,
+            decoration: const InputDecoration(
+              counterText: "",
+              label: Text("Excercise Name"),
+              border: OutlineInputBorder(),
+            ),
           ),
-        ),
-        const SizedBox(height: 12),
-        TextField(
-          controller: _excerciseNameController,
-          textAlignVertical: TextAlignVertical.center,
-          maxLines: 2,
-          decoration: const InputDecoration(
-            counterText: "",
-            label: Text("Description"),
-            border: OutlineInputBorder(),
+          const SizedBox(height: 16),
+          TextField(
+            controller: _excerciseNameController,
+            textAlignVertical: TextAlignVertical.center,
+            maxLines: 2,
+            decoration: const InputDecoration(
+              counterText: "",
+              label: Text("Description"),
+              border: OutlineInputBorder(),
+            ),
           ),
-        ),
-        const SizedBox(height: 12),
-        UnitSelector(
-          selectedUnit: _selectedUnit,
-          onChangeSelectedUnit: _changeUnitHandler,
-        ),
-        const SizedBox(height: 12),
-        IntensityIndicatorSelector(
-          selectedIntensityIndicator: _selectedIntensityIndicator,
-          onChangeSelectedIntensityIndicator: _changeIntensityIndicatorHandler,
-        ),
-        const SizedBox(height: 12),
-        Card(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: Column(children: [
-              const Text(
-                "Rep range:",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
+          const SizedBox(height: 12),
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            color: Theme.of(context).colorScheme.surface,
+            elevation: 4,
+            child: ListTile(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 4),
+              title: const Text("Unit"),
+              trailing: IconButton(
+                icon: const Icon(
+                  Icons.arrow_forward_ios,
                 ),
+                onPressed: () {
+                  context.pushWithSlide(const UnitSelectorPage());
+                },
               ),
-              const SizedBox(
-                height: 16,
-              ),
-              RichText(
-                text: TextSpan(
-                  children: [
-                    const TextSpan(text: "Between"),
-                    TextSpan(
-                        text:
-                            " $_selectedRepRangeStart - $_selectedRepRangeEnd ",
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                        )),
-                    const TextSpan(text: "reps."),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 8),
-              RangeSlider(
-                min: 1,
-                max: 25,
-                values: RangeValues(_selectedRepRangeStart.toDouble(),
-                    _selectedRepRangeEnd.toDouble()),
-                onChanged: _changeRepsRangeHandler,
-              ),
-            ]),
+            ),
           ),
-        ),
-        const SizedBox(height: 12),
-        ElevatedButton.icon(
-          onPressed: _onSaveExcerciseSettings,
-          icon: const Icon(Icons.save),
-          label: const Text("Save"),
-        ),
-      ],
+          const SizedBox(height: 16),
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            elevation: 4,
+            child: ListTile(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 4),
+              title: const Text("Intensity Indicator"),
+              trailing: IconButton(
+                icon: const Icon(
+                  Icons.arrow_forward_ios,
+                ),
+                onPressed: () {
+                  context.pushWithSlide(const IntensityIndicatorSelector());
+                },
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            elevation: 4,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: Column(children: [
+                const Text(
+                  "Rep range:",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                RichText(
+                  text: TextSpan(
+                    children: [
+                      const TextSpan(text: "Between"),
+                      TextSpan(
+                          text:
+                              " $_selectedRepRangeStart - $_selectedRepRangeEnd ",
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          )),
+                      const TextSpan(text: "reps."),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 8),
+                RangeSlider(
+                  min: 1,
+                  max: 25,
+                  values: RangeValues(_selectedRepRangeStart.toDouble(),
+                      _selectedRepRangeEnd.toDouble()),
+                  onChanged: _changeRepsRangeHandler,
+                ),
+              ]),
+            ),
+          ),
+          const SizedBox(height: 16),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton.icon(
+              onPressed: _onSaveExcerciseSettings,
+              icon: const Icon(Icons.save),
+              label: const Text("Save"),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
