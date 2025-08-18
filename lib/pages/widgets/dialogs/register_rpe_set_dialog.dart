@@ -11,10 +11,23 @@ class RegisterRPESet extends StatefulWidget {
 class _RegisterRPESetState extends State<RegisterRPESet> {
   int _selectedRPEValue = 8;
 
+  /// Focus de la UI.
+  ///
+  final FocusNode _firstFocus = FocusNode();
+  final FocusNode _secondFocus = FocusNode();
+
   void _setRPEValue(double newRPEValue) {
     setState(() {
       _selectedRPEValue = newRPEValue.toInt();
     });
+  }
+
+  @override
+  void dispose() {
+    _firstFocus.dispose();
+    _secondFocus.dispose();
+
+    super.dispose();
   }
 
   @override
@@ -27,8 +40,7 @@ class _RegisterRPESetState extends State<RegisterRPESet> {
           padding: EdgeInsets.fromLTRB(2, 2, 2, keyboardSpace + 16),
           child: Column(
             children: [
-             const ModalBottomHandle(),
-
+              const ModalBottomHandle(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -65,14 +77,19 @@ class _RegisterRPESetState extends State<RegisterRPESet> {
               Row(
                 children: [
                   const Spacer(),
-                  const Expanded(
+                  Expanded(
                     child: TextField(
                       textAlignVertical: TextAlignVertical.center,
-                      keyboardType: TextInputType.numberWithOptions(),
+                      focusNode: _firstFocus,
+                      keyboardType: const TextInputType.numberWithOptions(),
+                      textInputAction: TextInputAction.next,
+                      onSubmitted: (_) {
+                        FocusScope.of(context).requestFocus(_secondFocus);
+                      },
                       textAlign: TextAlign.center,
                       maxLength: 4,
                       maxLines: 1,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         counterText: "",
                         border: OutlineInputBorder(),
                       ),
@@ -101,14 +118,19 @@ class _RegisterRPESetState extends State<RegisterRPESet> {
                   const SizedBox(
                     width: 8,
                   ),
-                  const Expanded(
+                  Expanded(
                     child: TextField(
                       textAlignVertical: TextAlignVertical.center,
-                      keyboardType: TextInputType.numberWithOptions(),
+                      textInputAction: TextInputAction.done,
+                      focusNode: _secondFocus,
+                      onSubmitted: (_) {
+                        FocusScope.of(context).unfocus();
+                      },
+                      keyboardType: const TextInputType.numberWithOptions(),
                       textAlign: TextAlign.center,
                       maxLength: 5,
                       maxLines: 1,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         counterText: "",
                         border: OutlineInputBorder(),
                       ),

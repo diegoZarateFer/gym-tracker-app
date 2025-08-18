@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:gym_tracker_ui/pages/widgets/modal_bottom_handle.dart';
 
-class RegisterRegularSet extends StatelessWidget {
+class RegisterRegularSet extends StatefulWidget {
   const RegisterRegularSet({super.key});
+
+  @override
+  State<RegisterRegularSet> createState() => _RegisterRegularSetState();
+}
+
+class _RegisterRegularSetState extends State<RegisterRegularSet> {
+  /// Focus de la UI.
+  ///
+  final FocusNode _firstFocus = FocusNode();
+  final FocusNode _secondFocus = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -48,59 +58,63 @@ class RegisterRegularSet extends StatelessWidget {
               const SizedBox(
                 height: 16,
               ),
-              const Row(
+              Row(
                 children: [
-                  Spacer(),
+                  const Spacer(),
                   Expanded(
                     child: TextField(
+                      focusNode: _firstFocus,
                       textAlignVertical: TextAlignVertical.center,
-                      keyboardType: TextInputType.numberWithOptions(),
+                      keyboardType: const TextInputType.numberWithOptions(),
+                      textInputAction: TextInputAction.next,
+                      onSubmitted: (_) {
+                        FocusScope.of(context).requestFocus(_secondFocus);
+                      },
                       textAlign: TextAlign.center,
                       maxLength: 4,
                       maxLines: 1,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         counterText: "",
                         border: OutlineInputBorder(),
                       ),
                     ),
                   ),
-                  SizedBox(
-                    width: 8,
-                  ),
-                  Text(
+                  const SizedBox(width: 8),
+                  const Text(
                     "units",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
                     ),
                   ),
-                  SizedBox(
-                    width: 8,
-                  ),
-                  Text(
+                  const SizedBox(width: 8),
+                  const Text(
                     "x",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
                     ),
                   ),
-                  SizedBox(
-                    width: 8,
-                  ),
+                  const SizedBox(width: 8),
                   Expanded(
                     child: TextField(
+                      focusNode: _secondFocus,
                       textAlignVertical: TextAlignVertical.center,
-                      keyboardType: TextInputType.numberWithOptions(),
+                      keyboardType: const TextInputType.numberWithOptions(),
+                      textInputAction: TextInputAction.done,
                       textAlign: TextAlign.center,
+                      onSubmitted: (_) {
+                        FocusScope.of(context).unfocus();
+                      },
                       maxLength: 5,
                       maxLines: 1,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         counterText: "",
                         border: OutlineInputBorder(),
                       ),
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                 ],
               ),
               const SizedBox(
