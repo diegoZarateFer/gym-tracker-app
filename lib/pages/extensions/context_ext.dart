@@ -14,7 +14,6 @@ extension ContextExt on BuildContext {
       context: this,
       useSafeArea: true,
       isScrollControlled: true,
-      backgroundColor: const Color(0xFF1A1A1A),
       builder: (modalContext) {
         return Padding(
           padding: const EdgeInsets.all(8),

@@ -95,7 +95,7 @@ final ThemeData appDarkTheme = ThemeData(
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       backgroundColor: Colors.green,
-      foregroundColor: const Color(0xFFB0BEC5),
+      foregroundColor: Colors.white,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(12)),
       ),
@@ -108,7 +108,7 @@ final ThemeData appDarkTheme = ThemeData(
     foregroundColor: Color(0xFFB0BEC5),
   ),
   bottomSheetTheme: const BottomSheetThemeData(
-    backgroundColor: Color(0xFF1A1A1A),
+    backgroundColor: Color.fromARGB(255, 21, 29, 34),
     elevation: 10,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(
@@ -118,7 +118,7 @@ final ThemeData appDarkTheme = ThemeData(
   ),
   inputDecorationTheme: const InputDecorationTheme(
     filled: true,
-    fillColor: Colors.black26,
+    fillColor: Color.fromARGB(66, 68, 68, 68),
     enabledBorder: OutlineInputBorder(
       borderSide: BorderSide(color: Color(0xFF3C3C3C)),
       borderRadius: BorderRadius.all(Radius.circular(12)),

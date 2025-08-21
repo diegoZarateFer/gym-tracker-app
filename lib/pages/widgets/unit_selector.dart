@@ -38,54 +38,61 @@ class _UnitSelectorPageState extends State<UnitSelectorPage> {
         ),
         title: const Text("Unit"),
       ),
-      body: Card(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              RadioListTile<Units>(
-                value: Units.kgs,
-                groupValue: __selectedUnit,
-                title: const Text(
-                  "Kilograms (kgs)",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Theme.of(context).inputDecorationTheme.fillColor,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                RadioListTile<Units>(
+                  value: Units.kgs,
+                  groupValue: __selectedUnit,
+                  title: const Text(
+                    "Kilograms (kgs)",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
+                  onChanged: _changeUnitHandler,
+                  activeColor: Theme.of(context).colorScheme.primary,
+                  controlAffinity: ListTileControlAffinity.trailing,
                 ),
-                onChanged: _changeUnitHandler,
-                activeColor: const Color(0xFF8E6CEF),
-                controlAffinity: ListTileControlAffinity.trailing,
-              ),
-              const Divider(),
-              RadioListTile<Units>(
-                value: Units.lbs,
-                groupValue: __selectedUnit,
-                title: const Text(
-                  "Pounds (lbs)",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
+                const Divider(),
+                RadioListTile<Units>(
+                  value: Units.lbs,
+                  groupValue: __selectedUnit,
+                  title: const Text(
+                    "Pounds (lbs)",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
+                  onChanged: _changeUnitHandler,
+                  activeColor: Theme.of(context).colorScheme.primary,
+                  controlAffinity: ListTileControlAffinity.trailing,
                 ),
-                onChanged: _changeUnitHandler,
-                activeColor: const Color(0xFF8E6CEF),
-                controlAffinity: ListTileControlAffinity.trailing,
-              ),
-              const Divider(),
-              RadioListTile<Units>(
-                value: Units.units,
-                groupValue: __selectedUnit,
-                title: const Text(
-                  "Units",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
+                const Divider(),
+                RadioListTile<Units>(
+                  value: Units.units,
+                  groupValue: __selectedUnit,
+                  title: const Text(
+                    "Units",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
+                  onChanged: _changeUnitHandler,
+                  activeColor: Theme.of(context).colorScheme.primary,
+                  controlAffinity: ListTileControlAffinity.trailing,
                 ),
-                onChanged: _changeUnitHandler,
-                activeColor: const Color(0xFF8E6CEF),
-                controlAffinity: ListTileControlAffinity.trailing,
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
