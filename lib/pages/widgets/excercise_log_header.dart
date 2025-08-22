@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gym_tracker_ui/pages/excercise_history_page.dart';
+import 'package:gym_tracker_ui/pages/excercise_settings_page.dart';
 import 'package:gym_tracker_ui/pages/extensions/context_ext.dart';
 import 'package:gym_tracker_ui/pages/widgets/dialogs/notes_dialog.dart';
 
@@ -44,7 +45,7 @@ class ExcerciseLogHeader extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, ExcerciseHistoryPage.route);
+              Navigator.pushNamed(context, ExcerciseSettingsPage.route);
             },
             icon: const Icon(Icons.settings),
           ),

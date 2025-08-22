@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gym_tracker_ui/pages/extensions/context_ext.dart';
-import 'package:gym_tracker_ui/pages/widgets/intensity_indicator_selector.dart';
-import 'package:gym_tracker_ui/pages/widgets/unit_selector.dart';
+import 'package:gym_tracker_ui/pages/widgets/dialogs/intensity_indicator_selector_dialog.dart';
+import 'package:gym_tracker_ui/pages/widgets/dialogs/weight_progression_selector_dialog.dart';
+import 'package:gym_tracker_ui/pages/widgets/dialogs/rest_time_selector_dialog.dart';
+import 'package:gym_tracker_ui/pages/widgets/dialogs/unit_selector_dialog.dart';
 
 class ExcerciseSettingsForm extends StatefulWidget {
   const ExcerciseSettingsForm({
@@ -49,6 +51,10 @@ class _ExcerciseSettingsFormState extends State<ExcerciseSettingsForm> {
       minNumberOfReps: _selectedRepRangeStart,
       maxNumberOfReps: _selectedRepRangeEnd,
     );
+  }
+
+  void _saveWeightProgressionHandler(double selectedWeight) {
+    print(selectedWeight);
   }
 
   @override
@@ -103,7 +109,7 @@ class _ExcerciseSettingsFormState extends State<ExcerciseSettingsForm> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        context.pushWithSlide(const UnitSelectorPage());
+                        context.showBottomDialog(const UnitSelectorDialog());
                       },
                       child: const ListTile(
                         contentPadding: EdgeInsets.symmetric(horizontal: 4),
@@ -115,19 +121,24 @@ class _ExcerciseSettingsFormState extends State<ExcerciseSettingsForm> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        context
-                            .pushWithSlide(const IntensityIndicatorSelector());
+                        context.showBottomDialog(
+                            const IntensityIndicatorSelectorDialog());
                       },
                       child: const ListTile(
                         contentPadding: EdgeInsets.symmetric(horizontal: 4),
-                        title: Text("Intensity Indicator"),
+                        title: Text(
+                          "Intensity Indicator",
+                        ),
                         trailing: Icon(
                           Icons.arrow_forward_ios,
                         ),
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        context
+                            .showBottomDialog(const RestTimeSelectorDialog());
+                      },
                       child: const ListTile(
                         contentPadding: EdgeInsets.symmetric(horizontal: 4),
                         title: Text("Rest time between sets"),
@@ -137,7 +148,13 @@ class _ExcerciseSettingsFormState extends State<ExcerciseSettingsForm> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        context
+                            .showBottomDialog(WeightProgressionSelectorDialog(
+                          onSaveWeightProgression:
+                              _saveWeightProgressionHandler,
+                        ));
+                      },
                       child: const ListTile(
                         contentPadding: EdgeInsets.symmetric(horizontal: 4),
                         title: Text("Increase weight by"),
@@ -183,12 +200,17 @@ class _ExcerciseSettingsFormState extends State<ExcerciseSettingsForm> {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  RangeSlider(
-                    min: 1,
-                    max: 25,
-                    values: RangeValues(_selectedRepRangeStart.toDouble(),
-                        _selectedRepRangeEnd.toDouble()),
-                    onChanged: _changeRepsRangeHandler,
+                  SliderTheme(
+                    data: SliderTheme.of(context).copyWith(
+                      thumbColor: Colors.white,
+                    ),
+                    child: RangeSlider(
+                      min: 1,
+                      max: 25,
+                      values: RangeValues(_selectedRepRangeStart.toDouble(),
+                          _selectedRepRangeEnd.toDouble()),
+                      onChanged: _changeRepsRangeHandler,
+                    ),
                   ),
                 ]),
               ),

@@ -159,6 +159,7 @@ class _RegisterRPESetState extends State<RegisterRPESet> {
               ),
               const SizedBox(height: 4),
               Slider(
+                thumbColor: Colors.white,
                 value: _selectedRPEValue.toDouble(),
                 min: 1,
                 max: 10,
