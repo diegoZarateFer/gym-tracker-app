@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gym_tracker_ui/core/theme/app_theme.dart';
+import 'package:gym_tracker_ui/pages/excercise_history_page.dart';
 import 'package:gym_tracker_ui/pages/excercise_settings_page.dart';
 import 'package:gym_tracker_ui/pages/register_workout_page.dart';
 
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       routes: {
         RegisterWorkoutPage.route: (context) => const RegisterWorkoutPage(),
         ExcerciseSettingsPage.route: (context) => const ExcerciseSettingsPage(),
+        ExcerciseHistoryPage.route: (context) => const ExcerciseHistoryPage(),
       },
     );
   }
