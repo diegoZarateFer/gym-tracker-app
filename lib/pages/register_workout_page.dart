@@ -15,7 +15,6 @@ class RegisterWorkoutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.background,
         centerTitle: true,
         title: const Text("Workout Name"),
       ),

@@ -61,123 +61,149 @@ class _ExcerciseSettingsFormState extends State<ExcerciseSettingsForm> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          TextField(
-            controller: _excerciseNameController,
-            textAlignVertical: TextAlignVertical.center,
-            maxLines: 1,
-            maxLength: 30,
-            decoration: const InputDecoration(
-              counterText: "",
-              label: Text("Excercise Name"),
-              border: OutlineInputBorder(),
-            ),
-          ),
-          const SizedBox(height: 16),
-          TextField(
-            controller: _excerciseNameController,
-            textAlignVertical: TextAlignVertical.center,
-            maxLines: 2,
-            decoration: const InputDecoration(
-              counterText: "",
-              label: Text("Description"),
-              border: OutlineInputBorder(),
-            ),
-          ),
-          const SizedBox(height: 12),
-          Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            color: Theme.of(context).colorScheme.surface,
-            elevation: 4,
-            child: ListTile(
-              contentPadding: const EdgeInsets.symmetric(horizontal: 4),
-              title: const Text("Unit"),
-              trailing: IconButton(
-                icon: const Icon(
-                  Icons.arrow_forward_ios,
-                ),
-                onPressed: () {
-                  context.pushWithSlide(const UnitSelectorPage());
-                },
+      child: Padding(
+        padding: const EdgeInsets.only(
+          top: 16,
+          left: 8,
+          right: 8,
+        ),
+        child: Column(
+          children: [
+            TextField(
+              controller: _excerciseNameController,
+              textAlignVertical: TextAlignVertical.center,
+              maxLines: 1,
+              maxLength: 30,
+              decoration: const InputDecoration(
+                counterText: "",
+                label: Text("Excercise Name"),
+                border: OutlineInputBorder(),
               ),
             ),
-          ),
-          const SizedBox(height: 16),
-          Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            elevation: 4,
-            child: ListTile(
-              contentPadding: const EdgeInsets.symmetric(horizontal: 4),
-              title: const Text("Intensity Indicator"),
-              trailing: IconButton(
-                icon: const Icon(
-                  Icons.arrow_forward_ios,
-                ),
-                onPressed: () {
-                  context.pushWithSlide(const IntensityIndicatorSelector());
-                },
+            const SizedBox(height: 16),
+            TextField(
+              controller: _excerciseNameController,
+              textAlignVertical: TextAlignVertical.center,
+              maxLines: 2,
+              decoration: const InputDecoration(
+                counterText: "",
+                label: Text("Description"),
+                border: OutlineInputBorder(),
               ),
             ),
-          ),
-          const SizedBox(height: 16),
-          Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+            const SizedBox(height: 16),
+            Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).inputDecorationTheme.fillColor,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        context.pushWithSlide(const UnitSelectorPage());
+                      },
+                      child: const ListTile(
+                        contentPadding: EdgeInsets.symmetric(horizontal: 4),
+                        title: Text("Unit"),
+                        trailing: Icon(
+                          Icons.arrow_forward_ios,
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        context
+                            .pushWithSlide(const IntensityIndicatorSelector());
+                      },
+                      child: const ListTile(
+                        contentPadding: EdgeInsets.symmetric(horizontal: 4),
+                        title: Text("Intensity Indicator"),
+                        trailing: Icon(
+                          Icons.arrow_forward_ios,
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: const ListTile(
+                        contentPadding: EdgeInsets.symmetric(horizontal: 4),
+                        title: Text("Rest time between sets"),
+                        trailing: Icon(
+                          Icons.arrow_forward_ios,
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: const ListTile(
+                        contentPadding: EdgeInsets.symmetric(horizontal: 4),
+                        title: Text("Increase weight by"),
+                        trailing: Icon(
+                          Icons.arrow_forward_ios,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
-            elevation: 4,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              child: Column(children: [
-                const Text(
-                  "Rep range:",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
+            const SizedBox(height: 16),
+            Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).inputDecorationTheme.fillColor,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Column(children: [
+                  const Text(
+                    "Rep range:",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                RichText(
-                  text: TextSpan(
-                    children: [
-                      const TextSpan(text: "Between"),
-                      TextSpan(
+                  const SizedBox(height: 16),
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        const TextSpan(text: "Between"),
+                        TextSpan(
                           text:
                               " $_selectedRepRangeStart - $_selectedRepRangeEnd ",
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
-                          )),
-                      const TextSpan(text: "reps."),
-                    ],
+                          ),
+                        ),
+                        const TextSpan(text: "reps."),
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(height: 8),
-                RangeSlider(
-                  min: 1,
-                  max: 25,
-                  values: RangeValues(_selectedRepRangeStart.toDouble(),
-                      _selectedRepRangeEnd.toDouble()),
-                  onChanged: _changeRepsRangeHandler,
-                ),
-              ]),
+                  const SizedBox(height: 8),
+                  RangeSlider(
+                    min: 1,
+                    max: 25,
+                    values: RangeValues(_selectedRepRangeStart.toDouble(),
+                        _selectedRepRangeEnd.toDouble()),
+                    onChanged: _changeRepsRangeHandler,
+                  ),
+                ]),
+              ),
             ),
-          ),
-          const SizedBox(height: 16),
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton.icon(
-              onPressed: _onSaveExcerciseSettings,
-              icon: const Icon(Icons.save),
-              label: const Text("Save"),
+            const SizedBox(height: 16),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                onPressed: _onSaveExcerciseSettings,
+                icon: const Icon(Icons.save),
+                label: const Text("Save"),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
