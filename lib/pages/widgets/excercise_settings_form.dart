@@ -88,7 +88,7 @@ class _ExcerciseSettingsFormState extends State<ExcerciseSettingsForm> {
             ),
             const SizedBox(height: 16),
             TextField(
-              controller: _excerciseNameController,
+              controller: _excerciseDescriptionController,
               textAlignVertical: TextAlignVertical.center,
               maxLines: 2,
               decoration: const InputDecoration(

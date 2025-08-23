@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gym_tracker_ui/pages/widgets/rir_excercise_log.dart';
+import 'package:gym_tracker_ui/pages/widgets/regular_history_excercise_log.dart';
+import 'package:gym_tracker_ui/pages/widgets/rir_history_excercise_log.dart';
+import 'package:gym_tracker_ui/pages/widgets/rpe_history_excercise_log.dart';
 
 class ExcerciseHistoryPage extends StatefulWidget {
   static const String route = "/excercise-history";
@@ -26,13 +28,27 @@ class _ExcerciseHistoryPageState extends State<ExcerciseHistoryPage> {
           },
         ),
         title: const Text("Excercise Name"),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.calendar_month,
+            ),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.tune,
+            ),
+          ),
+        ],
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Column(
           children: [
-            RIRExcerciseLog(),
-            RIRExcerciseLog(),
-            RIRExcerciseLog(),
+            RIRHistoryExcerciseLog(),
+            RPEHistoryExcerciseLog(),
+            RegularHistoryExcerciseLog(),
           ],
         ),
       ),

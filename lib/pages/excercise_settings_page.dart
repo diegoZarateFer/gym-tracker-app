@@ -29,19 +29,11 @@ class _ExcerciseSettingsPageState extends State<ExcerciseSettingsPage> {
         backgroundColor: Theme.of(context).colorScheme.background,
         centerTitle: true,
         leading: IconButton(
-          icon: const Icon(Icons.check),
+          icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.close),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
         title: const Text("Excercise Name"),
       ),
       body: Padding(
