@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gym_tracker_ui/pages/extensions/context_ext.dart';
+import 'package:gym_tracker_ui/pages/widgets/dialogs/filter_excercise_history_dialog.dart';
 import 'package:gym_tracker_ui/pages/widgets/regular_history_excercise_log.dart';
 import 'package:gym_tracker_ui/pages/widgets/rir_history_excercise_log.dart';
 import 'package:gym_tracker_ui/pages/widgets/rpe_history_excercise_log.dart';
@@ -36,7 +38,9 @@ class _ExcerciseHistoryPageState extends State<ExcerciseHistoryPage> {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              context.showBottomDialog(const FilterExcerciseHistoryDialog());
+            },
             icon: const Icon(
               Icons.tune,
             ),

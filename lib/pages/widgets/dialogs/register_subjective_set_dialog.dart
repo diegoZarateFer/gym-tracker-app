@@ -1,19 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:gym_tracker_ui/pages/widgets/modal_bottom_handle.dart';
 
-class RegisterRIRSet extends StatefulWidget {
-  const RegisterRIRSet({super.key});
+enum SubjectiveScale { easy, medium, hard }
+
+class RegisterSubjectiveSet extends StatefulWidget {
+  const RegisterSubjectiveSet({super.key});
 
   @override
-  State<RegisterRIRSet> createState() => _RegisterRIRSetState();
+  State<RegisterSubjectiveSet> createState() => _RegisterSubjectiveSetState();
 }
 
-class _RegisterRIRSetState extends State<RegisterRIRSet> {
+class _RegisterSubjectiveSetState extends State<RegisterSubjectiveSet> {
   /// Focus de la UI.
   ///
   final FocusNode _firstFocus = FocusNode();
   final FocusNode _secondFocus = FocusNode();
-  final FocusNode _thirdFocus = FocusNode();
+
+  /// Variable de dificultad subjetiva.
+  ///
+  SubjectiveScale _selectedDifficulty = SubjectiveScale.medium;
+
+  /// Funciones para los widgets.
+  ///
+  void _changeDifficulty(SubjectiveScale? selectedValue) {
+    setState(() {
+      _selectedDifficulty = selectedValue ?? SubjectiveScale.easy;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,20 +69,21 @@ class _RegisterRIRSetState extends State<RegisterRIRSet> {
                 ],
               ),
               const Divider(),
-              const SizedBox(height: 16),
+              const SizedBox(
+                height: 16,
+              ),
               Row(
                 children: [
                   const Spacer(),
                   Expanded(
-                    flex: 2,
                     child: TextField(
                       focusNode: _firstFocus,
                       textAlignVertical: TextAlignVertical.center,
+                      keyboardType: const TextInputType.numberWithOptions(),
                       textInputAction: TextInputAction.next,
                       onSubmitted: (_) {
                         FocusScope.of(context).requestFocus(_secondFocus);
                       },
-                      keyboardType: const TextInputType.numberWithOptions(),
                       textAlign: TextAlign.center,
                       maxLength: 4,
                       maxLines: 1,
@@ -79,9 +93,7 @@ class _RegisterRIRSetState extends State<RegisterRIRSet> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    width: 8,
-                  ),
+                  const SizedBox(width: 8),
                   const Text(
                     "units",
                     style: TextStyle(
@@ -99,16 +111,15 @@ class _RegisterRIRSetState extends State<RegisterRIRSet> {
                   ),
                   const SizedBox(width: 8),
                   Expanded(
-                    flex: 2,
                     child: TextField(
                       focusNode: _secondFocus,
                       textAlignVertical: TextAlignVertical.center,
-                      textInputAction: TextInputAction.next,
                       keyboardType: const TextInputType.numberWithOptions(),
-                      onSubmitted: (_) {
-                        FocusScope.of(context).requestFocus(_thirdFocus);
-                      },
+                      textInputAction: TextInputAction.done,
                       textAlign: TextAlign.center,
+                      onSubmitted: (_) {
+                        FocusScope.of(context).unfocus();
+                      },
                       maxLength: 5,
                       maxLines: 1,
                       decoration: const InputDecoration(
@@ -117,35 +128,35 @@ class _RegisterRIRSetState extends State<RegisterRIRSet> {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 8),
-                  const Text(
-                    "@",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    flex: 2,
-                    child: TextField(
-                      focusNode: _thirdFocus,
-                      onSubmitted: (_) {
-                        FocusScope.of(context).unfocus();
-                      },
-                      textInputAction: TextInputAction.done,
-                      textAlignVertical: TextAlignVertical.center,
-                      keyboardType: const TextInputType.numberWithOptions(),
-                      textAlign: TextAlign.center,
-                      maxLength: 2,
-                      maxLines: 1,
-                      decoration: const InputDecoration(
-                        counterText: "",
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
-                  ),
                   const Spacer(),
+                ],
+              ),
+              const SizedBox(height: 32),
+              const Text("How hard was the set?"),
+              const SizedBox(height: 4),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Radio<SubjectiveScale>(
+                    value: SubjectiveScale.easy,
+                    groupValue: _selectedDifficulty,
+                    onChanged: _changeDifficulty,
+                  ),
+                  const Text("Easy"),
+                  const SizedBox(width: 8),
+                  Radio<SubjectiveScale>(
+                    value: SubjectiveScale.medium,
+                    groupValue: _selectedDifficulty,
+                    onChanged: _changeDifficulty,
+                  ),
+                  const Text("Medium"),
+                  const SizedBox(width: 8),
+                  Radio<SubjectiveScale>(
+                    value: SubjectiveScale.hard,
+                    groupValue: _selectedDifficulty,
+                    onChanged: _changeDifficulty,
+                  ),
+                  const Text("Hard"),
                 ],
               ),
               const SizedBox(height: 32),

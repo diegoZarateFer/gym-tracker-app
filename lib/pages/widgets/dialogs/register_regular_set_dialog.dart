@@ -54,10 +54,7 @@ class _RegisterRegularSetState extends State<RegisterRegularSet> {
                   ),
                 ],
               ),
-              const Divider(),
-              const SizedBox(
-                height: 16,
-              ),
+              const SizedBox(height: 16),
               Row(
                 children: [
                   const Spacer(),
@@ -117,15 +114,26 @@ class _RegisterRegularSetState extends State<RegisterRegularSet> {
                   const Spacer(),
                 ],
               ),
-              const SizedBox(
-                height: 16,
-              ),
-              ElevatedButton.icon(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                icon: const Icon(Icons.check),
-                label: const Text("Done"),
+              const SizedBox(height: 32),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    icon: const Icon(Icons.videocam),
+                    label: const Text("Record Set"),
+                  ),
+                  const SizedBox(width: 8),
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    icon: const Icon(Icons.check),
+                    label: const Text("Done"),
+                  ),
+                ],
               ),
             ],
           ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gym_tracker_ui/pages/widgets/modal_bottom_handle.dart';
 
-enum IntensityIndicators { none, rir, rpe }
+enum IntensityIndicators { none, rir, rpe, subjective }
 
 class IntensityIndicatorSelectorDialog extends StatefulWidget {
   const IntensityIndicatorSelectorDialog({
@@ -79,6 +79,23 @@ class _IntensityIndicatorSelectorDialogState
                       ),
                       title: const Text(
                         "RPE",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      onChanged: _changeIntensityIndicatorHandler,
+                      activeColor: Theme.of(context).colorScheme.primary,
+                      controlAffinity: ListTileControlAffinity.trailing,
+                    ),
+                    const Divider(),
+                    RadioListTile<IntensityIndicators>(
+                      value: IntensityIndicators.subjective,
+                      groupValue: _selectedIntensityIndicator,
+                      subtitle: const Text(
+                        "Recommended for beginners. It allows to choose how hard a set was for you.",
+                      ),
+                      title: const Text(
+                        "Subjective",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
