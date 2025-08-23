@@ -3,8 +3,8 @@ import 'package:gym_tracker_ui/pages/widgets/excercise_history_log_header.dart';
 import 'package:gym_tracker_ui/pages/widgets/history_log_cell.dart';
 import 'package:gym_tracker_ui/pages/widgets/title_cell.dart';
 
-class RPEHistoryExcerciseLog extends StatelessWidget {
-  const RPEHistoryExcerciseLog({super.key});
+class SubjectiveExcerciseHistoryLog extends StatelessWidget {
+  const SubjectiveExcerciseHistoryLog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class RPEHistoryExcerciseLog extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const ExcerciseHistoryLogHeader(title: "Jun 22, 2025"),
+            const ExcerciseHistoryLogHeader(title: "Subjective Log Excercise"),
             Divider(
               height: 1,
               thickness: 1,
@@ -42,8 +42,7 @@ class RPEHistoryExcerciseLog extends StatelessWidget {
                 0: FlexColumnWidth(1),
                 1: FlexColumnWidth(1),
                 2: FlexColumnWidth(1),
-                3: FlexColumnWidth(1),
-                4: FlexColumnWidth(2),
+                3: FlexColumnWidth(2),
               },
               children: const <TableRow>[
                 TableRow(
@@ -51,7 +50,6 @@ class RPEHistoryExcerciseLog extends StatelessWidget {
                     TitleCell("Set"),
                     TitleCell("Weight"),
                     TitleCell("Reps"),
-                    TitleCell("RPE"),
                   ],
                 ),
                 TableRow(
@@ -59,13 +57,10 @@ class RPEHistoryExcerciseLog extends StatelessWidget {
                     TitleCell("1"),
                     HistoryLogCell(
                       value: "120",
-                      isPr: true,
                     ),
                     HistoryLogCell(
                       value: "12",
-                    ),
-                    HistoryLogCell(
-                      value: "2",
+                      isFailure: true,
                     ),
                   ],
                 ),
@@ -77,10 +72,7 @@ class RPEHistoryExcerciseLog extends StatelessWidget {
                     ),
                     HistoryLogCell(
                       value: "12",
-                      isFailure: true,
-                    ),
-                    HistoryLogCell(
-                      value: "2",
+                      isPr: true,
                     ),
                   ],
                 ),

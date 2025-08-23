@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 class FieldCell extends StatelessWidget {
   const FieldCell({
     super.key,
-    required this.title,
+    required this.value,
     required this.onRegisterSet,
   });
 
-  final String title;
+  final String value;
   final void Function() onRegisterSet;
 
   @override
@@ -23,7 +23,7 @@ class FieldCell extends StatelessWidget {
               color: Theme.of(context).colorScheme.background,
             ),
             child: Text(
-              title,
+              value,
               textAlign: TextAlign.center,
             ),
           ),

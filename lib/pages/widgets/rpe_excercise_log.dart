@@ -5,7 +5,7 @@ import 'package:gym_tracker_ui/pages/widgets/empty_cell.dart';
 import 'package:gym_tracker_ui/pages/widgets/excercise_log_header.dart';
 import 'package:gym_tracker_ui/pages/widgets/field_cell.dart';
 import 'package:gym_tracker_ui/pages/widgets/dialogs/register_rpe_set_dialog.dart';
-import 'package:gym_tracker_ui/pages/widgets/text_dell.dart';
+import 'package:gym_tracker_ui/pages/widgets/text_cell.dart';
 import 'package:gym_tracker_ui/pages/widgets/title_cell.dart';
 
 class RPEExcerciseLog extends StatelessWidget {
@@ -64,19 +64,19 @@ class RPEExcerciseLog extends StatelessWidget {
                   children: [
                     const TitleCell("1"),
                     FieldCell(
-                      title: "120",
+                      value: "120",
                       onRegisterSet: () {
                         context.showBottomDialog(const RegisterRPESet());
                       },
                     ),
                     FieldCell(
-                      title: "12",
+                      value: "12",
                       onRegisterSet: () {
                         context.showBottomDialog(const RegisterRPESet());
                       },
                     ),
                     FieldCell(
-                      title: "2",
+                      value: "2",
                       onRegisterSet: () {
                         context.showBottomDialog(const RegisterRPESet());
                       },

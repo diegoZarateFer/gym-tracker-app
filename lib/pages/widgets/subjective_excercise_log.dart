@@ -6,7 +6,7 @@ import 'package:gym_tracker_ui/pages/widgets/empty_cell.dart';
 import 'package:gym_tracker_ui/pages/widgets/excercise_log_header.dart';
 import 'package:gym_tracker_ui/pages/widgets/field_cell.dart';
 import 'package:gym_tracker_ui/pages/widgets/dialogs/register_regular_set_dialog.dart';
-import 'package:gym_tracker_ui/pages/widgets/text_dell.dart';
+import 'package:gym_tracker_ui/pages/widgets/text_cell.dart';
 import 'package:gym_tracker_ui/pages/widgets/title_cell.dart';
 
 class SubjectiveExcerciseLog extends StatelessWidget {
@@ -63,13 +63,13 @@ class SubjectiveExcerciseLog extends StatelessWidget {
                   children: [
                     const TitleCell("1"),
                     FieldCell(
-                      title: "120",
+                      value: "120",
                       onRegisterSet: () {
                         context.showBottomDialog(const RegisterRegularSet());
                       },
                     ),
                     FieldCell(
-                      title: "12",
+                      value: "12",
                       onRegisterSet: () {
                         context.showBottomDialog(const RegisterRegularSet());
                       },

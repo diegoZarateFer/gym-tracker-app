@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:gym_tracker_ui/pages/extensions/context_ext.dart';
 import 'package:gym_tracker_ui/pages/widgets/excercise_history_log_header.dart';
-import 'package:gym_tracker_ui/pages/widgets/field_cell.dart';
-import 'package:gym_tracker_ui/pages/widgets/dialogs/register_regular_set_dialog.dart';
+import 'package:gym_tracker_ui/pages/widgets/history_log_cell.dart';
 import 'package:gym_tracker_ui/pages/widgets/title_cell.dart';
 
-class RegularHistoryExcerciseLog extends StatelessWidget {
-  const RegularHistoryExcerciseLog({super.key});
+class RegularExcerciseHistoryLog extends StatelessWidget {
+  const RegularExcerciseHistoryLog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +44,8 @@ class RegularHistoryExcerciseLog extends StatelessWidget {
                 2: FlexColumnWidth(1),
                 3: FlexColumnWidth(2),
               },
-              children: <TableRow>[
-                const TableRow(
+              children: const <TableRow>[
+                TableRow(
                   children: [
                     TitleCell("Set"),
                     TitleCell("Weight"),
@@ -56,35 +54,25 @@ class RegularHistoryExcerciseLog extends StatelessWidget {
                 ),
                 TableRow(
                   children: [
-                    const TitleCell("1"),
-                    FieldCell(
-                      title: "120",
-                      onRegisterSet: () {
-                        context.showBottomDialog(const RegisterRegularSet());
-                      },
+                    TitleCell("1"),
+                    HistoryLogCell(
+                      value: "120",
                     ),
-                    FieldCell(
-                      title: "12",
-                      onRegisterSet: () {
-                        context.showBottomDialog(const RegisterRegularSet());
-                      },
+                    HistoryLogCell(
+                      value: "12",
+                      isFailure: true,
                     ),
                   ],
                 ),
                 TableRow(
                   children: [
-                    const TitleCell("2"),
-                    FieldCell(
-                      title: "120",
-                      onRegisterSet: () {
-                        context.showBottomDialog(const RegisterRegularSet());
-                      },
+                    TitleCell("2"),
+                    HistoryLogCell(
+                      value: "120",
+                      isPr: true,
                     ),
-                    FieldCell(
-                      title: "12",
-                      onRegisterSet: () {
-                        context.showBottomDialog(const RegisterRegularSet());
-                      },
+                    HistoryLogCell(
+                      value: "12",
                     ),
                   ],
                 ),

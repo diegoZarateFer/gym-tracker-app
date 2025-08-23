@@ -18,7 +18,6 @@ class ExcerciseHistoryLogHeader extends StatelessWidget {
         borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             title,
@@ -26,6 +25,15 @@ class ExcerciseHistoryLogHeader extends StatelessWidget {
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
+          ),
+          const Spacer(),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.description),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.video_library),
           ),
         ],
       ),
