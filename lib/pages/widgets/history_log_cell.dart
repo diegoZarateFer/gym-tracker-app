@@ -26,6 +26,7 @@ class HistoryLogCell extends StatelessWidget {
             color: Theme.of(context).colorScheme.background,
           ),
           child: Row(
+            mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(

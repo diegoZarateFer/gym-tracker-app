@@ -50,6 +50,7 @@ class SubjectiveExcerciseHistoryLog extends StatelessWidget {
                     TitleCell("Set"),
                     TitleCell("Weight"),
                     TitleCell("Reps"),
+                    TitleCell("Difficulty"),
                   ],
                 ),
                 TableRow(
@@ -62,6 +63,9 @@ class SubjectiveExcerciseHistoryLog extends StatelessWidget {
                       value: "12",
                       isFailure: true,
                     ),
+                    HistoryLogCell(
+                      value: "Easy",
+                    ),
                   ],
                 ),
                 TableRow(
@@ -73,6 +77,9 @@ class SubjectiveExcerciseHistoryLog extends StatelessWidget {
                     HistoryLogCell(
                       value: "12",
                       isPr: true,
+                    ),
+                    HistoryLogCell(
+                      value: "Medium",
                     ),
                   ],
                 ),

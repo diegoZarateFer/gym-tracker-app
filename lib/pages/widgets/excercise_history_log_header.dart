@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gym_tracker_ui/pages/extensions/context_ext.dart';
+import 'package:gym_tracker_ui/pages/widgets/dialogs/show_set_videos_dialog.dart';
+import 'package:gym_tracker_ui/pages/widgets/dialogs/view_excercise_notes_dialog.dart';
 
 class ExcerciseHistoryLogHeader extends StatelessWidget {
   const ExcerciseHistoryLogHeader({
@@ -28,11 +31,15 @@ class ExcerciseHistoryLogHeader extends StatelessWidget {
           ),
           const Spacer(),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              context.showBottomDialog(const ViewExerciseNotes());
+            },
             icon: const Icon(Icons.description),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              context.showBottomDialog(const ShowSetVideos());
+            },
             icon: const Icon(Icons.video_library),
           ),
         ],
