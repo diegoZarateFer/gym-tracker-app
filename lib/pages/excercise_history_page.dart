@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym_tracker_ui/pages/excercise_calendar_page.dart';
 import 'package:gym_tracker_ui/pages/extensions/context_ext.dart';
 import 'package:gym_tracker_ui/pages/widgets/dialogs/filter_excercise_history_dialog.dart';
 import 'package:gym_tracker_ui/pages/widgets/regular_excercise_history_log.dart';
@@ -33,7 +34,9 @@ class _ExcerciseHistoryPageState extends State<ExcerciseHistoryPage> {
         title: const Text("Excercise Name"),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed(ExcerciseCalendarPage.route);
+            },
             icon: const Icon(
               Icons.calendar_month,
             ),
