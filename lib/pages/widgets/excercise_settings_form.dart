@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gym_tracker_ui/pages/extensions/context_ext.dart';
+import 'package:gym_tracker_ui/core/extensions/context_ext.dart';
 import 'package:gym_tracker_ui/pages/widgets/dialogs/intensity_indicator_selector_dialog.dart';
-import 'package:gym_tracker_ui/pages/widgets/dialogs/weight_progression_selector_dialog.dart';
 import 'package:gym_tracker_ui/pages/widgets/dialogs/rest_time_selector_dialog.dart';
 import 'package:gym_tracker_ui/pages/widgets/dialogs/unit_selector_dialog.dart';
 
@@ -13,7 +12,6 @@ class ExcerciseSettingsForm extends StatefulWidget {
 
   final void Function(
       {required String name,
-      required String description,
       required int minNumberOfReps,
       required int maxNumberOfReps}) onSaveExcerciseSettings;
 
@@ -25,7 +23,6 @@ class _ExcerciseSettingsFormState extends State<ExcerciseSettingsForm> {
   /// Controllers.
   ///
   final _excerciseNameController = TextEditingController();
-  final _excerciseDescriptionController = TextEditingController();
 
   /// Valores del rango de repeticiones.
   ///
@@ -46,21 +43,15 @@ class _ExcerciseSettingsFormState extends State<ExcerciseSettingsForm> {
 
   void _onSaveExcerciseSettings() {
     widget.onSaveExcerciseSettings(
-      description: _excerciseDescriptionController.text,
       name: _excerciseNameController.text,
       minNumberOfReps: _selectedRepRangeStart,
       maxNumberOfReps: _selectedRepRangeEnd,
     );
   }
 
-  void _saveWeightProgressionHandler(double selectedWeight) {
-    print(selectedWeight);
-  }
-
   @override
   void dispose() {
     _excerciseNameController.dispose();
-    _excerciseDescriptionController.dispose();
     super.dispose();
   }
 
@@ -87,17 +78,6 @@ class _ExcerciseSettingsFormState extends State<ExcerciseSettingsForm> {
               ),
             ),
             const SizedBox(height: 16),
-            TextField(
-              controller: _excerciseDescriptionController,
-              textAlignVertical: TextAlignVertical.center,
-              maxLines: 2,
-              decoration: const InputDecoration(
-                counterText: "",
-                label: Text("Description"),
-                border: OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 16),
             Container(
               decoration: BoxDecoration(
                 color: Theme.of(context).inputDecorationTheme.fillColor,
@@ -113,7 +93,16 @@ class _ExcerciseSettingsFormState extends State<ExcerciseSettingsForm> {
                       },
                       child: const ListTile(
                         contentPadding: EdgeInsets.symmetric(horizontal: 4),
-                        title: Text("Unit"),
+                        title: Row(
+                          children: [
+                            Icon(
+                              Icons.fitness_center,
+                              color: Colors.yellow,
+                            ),
+                            SizedBox(width: 8),
+                            Text("Unit"),
+                          ],
+                        ),
                         trailing: Icon(
                           Icons.arrow_forward_ios,
                         ),
@@ -126,8 +115,15 @@ class _ExcerciseSettingsFormState extends State<ExcerciseSettingsForm> {
                       },
                       child: const ListTile(
                         contentPadding: EdgeInsets.symmetric(horizontal: 4),
-                        title: Text(
-                          "Intensity Indicator",
+                        title: Row(
+                          children: [
+                            Icon(
+                              Icons.bolt,
+                              color: Colors.yellow,
+                            ),
+                            SizedBox(width: 8),
+                            Text("Intensity Indicator"),
+                          ],
                         ),
                         trailing: Icon(
                           Icons.arrow_forward_ios,
@@ -141,23 +137,16 @@ class _ExcerciseSettingsFormState extends State<ExcerciseSettingsForm> {
                       },
                       child: const ListTile(
                         contentPadding: EdgeInsets.symmetric(horizontal: 4),
-                        title: Text("Rest time between sets"),
-                        trailing: Icon(
-                          Icons.arrow_forward_ios,
+                        title: Row(
+                          children: [
+                            Icon(
+                              Icons.timer,
+                              color: Colors.yellow,
+                            ),
+                            SizedBox(width: 8),
+                            Text("Rest time between sets"),
+                          ],
                         ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        context
-                            .showBottomDialog(WeightProgressionSelectorDialog(
-                          onSaveWeightProgression:
-                              _saveWeightProgressionHandler,
-                        ));
-                      },
-                      child: const ListTile(
-                        contentPadding: EdgeInsets.symmetric(horizontal: 4),
-                        title: Text("Increase weight by"),
                         trailing: Icon(
                           Icons.arrow_forward_ios,
                         ),

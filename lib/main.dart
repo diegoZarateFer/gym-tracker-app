@@ -3,6 +3,7 @@ import 'package:gym_tracker_ui/core/theme/app_theme.dart';
 import 'package:gym_tracker_ui/pages/excercise_calendar_page.dart';
 import 'package:gym_tracker_ui/pages/excercise_history_page.dart';
 import 'package:gym_tracker_ui/pages/excercise_settings_page.dart';
+import 'package:gym_tracker_ui/pages/excercise_instructions_page.dart';
 import 'package:gym_tracker_ui/pages/register_workout_page.dart';
 
 void main() {
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         ExcerciseSettingsPage.route: (context) => const ExcerciseSettingsPage(),
         ExcerciseHistoryPage.route: (context) => const ExcerciseHistoryPage(),
         ExcerciseCalendarPage.route: (context) => const ExcerciseCalendarPage(),
+        ExcercisesInstructionsPage.route: (context) => const ExcercisesInstructionsPage(),
       },
     );
   }

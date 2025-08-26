@@ -13,11 +13,9 @@ class ExcerciseSettingsPage extends StatefulWidget {
 class _ExcerciseSettingsPageState extends State<ExcerciseSettingsPage> {
   void _saveExcerciseSettingsHandler(
       {required String name,
-      required String description,
       required int minNumberOfReps,
       required int maxNumberOfReps}) {
     print(name);
-    print(description);
     print(minNumberOfReps);
     print(maxNumberOfReps);
   }

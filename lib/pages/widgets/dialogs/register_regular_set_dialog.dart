@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gym_tracker_ui/core/extensions/context_ext.dart';
+import 'package:gym_tracker_ui/pages/widgets/dialogs/plate_calculator.dart';
 import 'package:gym_tracker_ui/pages/widgets/modal_bottom_handle.dart';
 
 class RegisterRegularSet extends StatefulWidget {
@@ -118,22 +120,29 @@ class _RegisterRegularSetState extends State<RegisterRegularSet> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
+                  IconButton(
+                    onPressed: () {},
                     icon: const Icon(Icons.videocam),
-                    label: const Text("Record Set"),
                   ),
-                  const SizedBox(width: 8),
-                  ElevatedButton.icon(
+                  const SizedBox(width: 2),
+                  IconButton(
                     onPressed: () {
-                      Navigator.of(context).pop();
+                      context.showModalDialog(const PlateCalculator());
                     },
-                    icon: const Icon(Icons.check),
-                    label: const Text("Done"),
+                    icon: const Icon(Icons.calculate),
                   ),
                 ],
+              ),
+              const SizedBox(height: 8),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: const Icon(Icons.check),
+                  label: const Text("Done"),
+                ),
               ),
             ],
           ),

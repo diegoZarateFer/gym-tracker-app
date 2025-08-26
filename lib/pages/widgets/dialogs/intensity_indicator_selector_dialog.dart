@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gym_tracker_ui/pages/widgets/modal_bottom_handle.dart';
 
-enum IntensityIndicators { none, rir, rpe, subjective }
+enum IntensityIndicator { none, rir, rpe, subjective }
 
 class IntensityIndicatorSelectorDialog extends StatefulWidget {
   const IntensityIndicatorSelectorDialog({
@@ -17,13 +17,13 @@ class _IntensityIndicatorSelectorDialogState
     extends State<IntensityIndicatorSelectorDialog> {
   /// Indicador de intensidad seleccionado.
   ///
-  IntensityIndicators _selectedIntensityIndicator = IntensityIndicators.none;
+  IntensityIndicator _selectedIntensityIndicator = IntensityIndicator.none;
 
   void _changeIntensityIndicatorHandler(
-      IntensityIndicators? selectedIndicator) {
+      IntensityIndicator? selectedIndicator) {
     setState(() {
       _selectedIntensityIndicator =
-          selectedIndicator ?? IntensityIndicators.none;
+          selectedIndicator ?? IntensityIndicator.none;
     });
   }
 
@@ -54,8 +54,8 @@ class _IntensityIndicatorSelectorDialogState
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    RadioListTile<IntensityIndicators>(
-                      value: IntensityIndicators.rir,
+                    RadioListTile<IntensityIndicator>(
+                      value: IntensityIndicator.rir,
                       groupValue: _selectedIntensityIndicator,
                       subtitle: const Text(
                         "How many reps you could still do before failure.",
@@ -71,8 +71,8 @@ class _IntensityIndicatorSelectorDialogState
                       controlAffinity: ListTileControlAffinity.trailing,
                     ),
                     const Divider(),
-                    RadioListTile<IntensityIndicators>(
-                      value: IntensityIndicators.rpe,
+                    RadioListTile<IntensityIndicator>(
+                      value: IntensityIndicator.rpe,
                       groupValue: _selectedIntensityIndicator,
                       subtitle: const Text(
                         "A 1–10 scale rating how hard you feel you’re working during exercise.",
@@ -88,8 +88,8 @@ class _IntensityIndicatorSelectorDialogState
                       controlAffinity: ListTileControlAffinity.trailing,
                     ),
                     const Divider(),
-                    RadioListTile<IntensityIndicators>(
-                      value: IntensityIndicators.subjective,
+                    RadioListTile<IntensityIndicator>(
+                      value: IntensityIndicator.subjective,
                       groupValue: _selectedIntensityIndicator,
                       subtitle: const Text(
                         "Recommended for beginners. It allows to choose how hard a set was for you.",
@@ -105,8 +105,8 @@ class _IntensityIndicatorSelectorDialogState
                       controlAffinity: ListTileControlAffinity.trailing,
                     ),
                     const Divider(),
-                    RadioListTile<IntensityIndicators>(
-                      value: IntensityIndicators.none,
+                    RadioListTile<IntensityIndicator>(
+                      value: IntensityIndicator.none,
                       groupValue: _selectedIntensityIndicator,
                       title: const Text(
                         "None",

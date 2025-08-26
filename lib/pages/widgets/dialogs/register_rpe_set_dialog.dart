@@ -165,26 +165,31 @@ class _RegisterRPESetState extends State<RegisterRPESet> {
                 max: 10,
                 onChanged: _setRPEValue,
               ),
-              const SizedBox(height: 32),
+              const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
+                  IconButton(
+                    onPressed: () {},
                     icon: const Icon(Icons.videocam),
-                    label: const Text("Record Set"),
                   ),
-                  const SizedBox(width: 8),
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    icon: const Icon(Icons.check),
-                    label: const Text("Done"),
+                  const SizedBox(width: 2),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.calculate),
                   ),
                 ],
+              ),
+              const SizedBox(height: 16),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: const Icon(Icons.check),
+                  label: const Text("Done"),
+                ),
               ),
             ],
           ),

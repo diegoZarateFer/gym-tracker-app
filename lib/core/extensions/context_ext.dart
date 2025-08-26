@@ -23,6 +23,15 @@ extension ContextExt on BuildContext {
     );
   }
 
+  void showModalDialog(Widget dialog) {
+    showDialog(
+      context: this,
+      builder: (BuildContext dialogContext) {
+        return dialog;
+      }
+    );
+  }
+
   Future<T?> pushWithSlide<T>(Widget screen) {
     return Navigator.push<T>(
       this,

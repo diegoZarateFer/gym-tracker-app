@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gym_tracker_ui/pages/widgets/modal_bottom_handle.dart';
 
-class AddExerciseNotes extends StatelessWidget {
-  const AddExerciseNotes({super.key});
+class AddExerciseComment extends StatelessWidget {
+  const AddExerciseComment({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class AddExerciseNotes extends StatelessWidget {
                   ),
                   const Spacer(),
                   const Text(
-                    "Notes",
+                    "Comments",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
@@ -55,6 +55,7 @@ class AddExerciseNotes extends StatelessWidget {
                 decoration: InputDecoration(
                   counterText: "",
                   border: OutlineInputBorder(),
+                  hintText: "Ex. It felt very easy today.",
                 ),
               ),
               const SizedBox(height: 16),

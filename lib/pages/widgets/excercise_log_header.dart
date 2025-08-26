@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gym_tracker_ui/pages/excercise_history_page.dart';
 import 'package:gym_tracker_ui/pages/excercise_settings_page.dart';
-import 'package:gym_tracker_ui/pages/extensions/context_ext.dart';
-import 'package:gym_tracker_ui/pages/widgets/dialogs/add_excercise_notes_dialog.dart';
+import 'package:gym_tracker_ui/core/extensions/context_ext.dart';
+import 'package:gym_tracker_ui/pages/widgets/dialogs/add_excercise_comment_dialog.dart';
 
 class ExcerciseLogHeader extends StatelessWidget {
   const ExcerciseLogHeader({
@@ -39,9 +39,9 @@ class ExcerciseLogHeader extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {
-              context.showBottomDialog(const AddExerciseNotes());
+              context.showBottomDialog(const AddExerciseComment());
             },
-            icon: const Icon(Icons.edit_note_sharp),
+            icon: const Icon(Icons.comment),
           ),
           IconButton(
             onPressed: () {

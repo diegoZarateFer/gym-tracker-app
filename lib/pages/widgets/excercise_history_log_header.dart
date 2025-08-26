@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gym_tracker_ui/pages/extensions/context_ext.dart';
+import 'package:gym_tracker_ui/core/extensions/context_ext.dart';
 import 'package:gym_tracker_ui/pages/widgets/dialogs/show_set_videos_dialog.dart';
 import 'package:gym_tracker_ui/pages/widgets/dialogs/view_excercise_notes_dialog.dart';
 

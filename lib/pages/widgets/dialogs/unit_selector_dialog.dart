@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gym_tracker_ui/pages/widgets/modal_bottom_handle.dart';
 
-enum Units { units, kgs, lbs }
+enum Unit { units, kgs, lbs }
 
 class UnitSelectorDialog extends StatefulWidget {
   const UnitSelectorDialog({
@@ -15,13 +15,13 @@ class UnitSelectorDialog extends StatefulWidget {
 class _UnitSelectorDialogState extends State<UnitSelectorDialog> {
   /// Unidad de medida seleccionada.
   ///
-  Units __selectedUnit = Units.kgs;
+  Unit __selectedUnit = Unit.kgs;
 
   /// Handler para cambiar unidades.
   ///
-  void _changeUnitHandler(Units? newSelectedUnit) {
+  void _changeUnitHandler(Unit? newSelectedUnit) {
     setState(() {
-      __selectedUnit = newSelectedUnit ?? Units.units;
+      __selectedUnit = newSelectedUnit ?? Unit.units;
     });
   }
 
@@ -54,8 +54,8 @@ class _UnitSelectorDialogState extends State<UnitSelectorDialog> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    RadioListTile<Units>(
-                      value: Units.kgs,
+                    RadioListTile<Unit>(
+                      value: Unit.kgs,
                       groupValue: __selectedUnit,
                       title: const Text(
                         "Kilograms (kgs)",
@@ -68,8 +68,8 @@ class _UnitSelectorDialogState extends State<UnitSelectorDialog> {
                       controlAffinity: ListTileControlAffinity.trailing,
                     ),
                     const Divider(),
-                    RadioListTile<Units>(
-                      value: Units.lbs,
+                    RadioListTile<Unit>(
+                      value: Unit.lbs,
                       groupValue: __selectedUnit,
                       title: const Text(
                         "Pounds (lbs)",
@@ -82,8 +82,8 @@ class _UnitSelectorDialogState extends State<UnitSelectorDialog> {
                       controlAffinity: ListTileControlAffinity.trailing,
                     ),
                     const Divider(),
-                    RadioListTile<Units>(
-                      value: Units.units,
+                    RadioListTile<Unit>(
+                      value: Unit.units,
                       groupValue: __selectedUnit,
                       title: const Text(
                         "Units",

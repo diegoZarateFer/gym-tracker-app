@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gym_tracker_ui/pages/extensions/context_ext.dart';
+import 'package:gym_tracker_ui/core/extensions/context_ext.dart';
 import 'package:gym_tracker_ui/pages/widgets/add_set_cell.dart';
 import 'package:gym_tracker_ui/pages/widgets/empty_cell.dart';
 import 'package:gym_tracker_ui/pages/widgets/field_cell.dart';
