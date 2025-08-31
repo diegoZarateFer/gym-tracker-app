@@ -9,6 +9,15 @@ extension ContextExt on BuildContext {
   double get width => size.width;
   double get height => size.height;
 
+  void showScaffoldMessage(String message, {int duration = 3}) {
+    ScaffoldMessenger.of(this).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        duration: Duration(seconds: duration),
+      ),
+    );
+  }
+
   void showBottomDialog(Widget content) {
     showModalBottomSheet(
       context: this,
@@ -25,11 +34,10 @@ extension ContextExt on BuildContext {
 
   void showModalDialog(Widget dialog) {
     showDialog(
-      context: this,
-      builder: (BuildContext dialogContext) {
-        return dialog;
-      }
-    );
+        context: this,
+        builder: (BuildContext dialogContext) {
+          return dialog;
+        });
   }
 
   Future<T?> pushWithSlide<T>(Widget screen) {
