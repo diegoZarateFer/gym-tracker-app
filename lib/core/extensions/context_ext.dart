@@ -32,8 +32,8 @@ extension ContextExt on BuildContext {
     );
   }
 
-  void showModalDialog(Widget dialog) {
-    showDialog(
+  Future<T?> showModalDialog<T>(Widget dialog) async {
+    return await showDialog<T>(
         context: this,
         builder: (BuildContext dialogContext) {
           return dialog;

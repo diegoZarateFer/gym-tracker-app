@@ -252,7 +252,7 @@ class BarPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return false;
+    return true;
   }
 
   void _drawSelectedPlatesRecs(

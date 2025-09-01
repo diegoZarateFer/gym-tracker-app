@@ -16,6 +16,11 @@ class _RegisterRegularSetState extends State<RegisterRegularSet> {
   final FocusNode _firstFocus = FocusNode();
   final FocusNode _secondFocus = FocusNode();
 
+  ///
+  /// Controllers
+  ///
+  final _weightController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final keyboardSpace = MediaQuery.of(context).viewInsets.bottom;
@@ -62,6 +67,7 @@ class _RegisterRegularSetState extends State<RegisterRegularSet> {
                   const Spacer(),
                   Expanded(
                     child: TextField(
+                      controller: _weightController,
                       focusNode: _firstFocus,
                       textAlignVertical: TextAlignVertical.center,
                       keyboardType: const TextInputType.numberWithOptions(),
@@ -119,17 +125,41 @@ class _RegisterRegularSetState extends State<RegisterRegularSet> {
               const SizedBox(height: 32),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
                 children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.videocam),
+                  Expanded(
+                    child: ElevatedButton.icon(
+                      onPressed: () {},
+                      icon: const Icon(Icons.videocam),
+                      label: const Text("Record"),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            Theme.of(context).colorScheme.onBackground,
+                        foregroundColor:
+                            Theme.of(context).colorScheme.background,
+                      ),
+                    ),
                   ),
-                  const SizedBox(width: 2),
-                  IconButton(
-                    onPressed: () {
-                      context.showModalDialog(const PlateCalculator());
-                    },
-                    icon: const Icon(Icons.calculate),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: ElevatedButton.icon(
+                      onPressed: () async {
+                        final weight = await context
+                            .showModalDialog<double?>(const PlateCalculator());
+
+                        if (weight != null) {
+                          _weightController.text = weight.toString();
+                        }
+                      },
+                      icon: const Icon(Icons.calculate),
+                      label: const Text("Calculator"),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            Theme.of(context).colorScheme.onBackground,
+                        foregroundColor:
+                            Theme.of(context).colorScheme.background,
+                      ),
+                    ),
                   ),
                 ],
               ),

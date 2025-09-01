@@ -5,6 +5,8 @@ import 'package:gym_tracker_ui/pages/widgets/bar_selector.dart';
 import 'package:gym_tracker_ui/pages/widgets/plates_selector.dart';
 import 'package:gym_tracker_ui/pages/widgets/weight_visualizer.dart';
 
+const double maximumAllowedWeight = 360;
+
 class PlateCalculator extends StatefulWidget {
   const PlateCalculator({super.key});
 
@@ -13,34 +15,41 @@ class PlateCalculator extends StatefulWidget {
 }
 
 class _PlateCalculatorState extends State<PlateCalculator> {
-  double _totalWeight = 0;
-  int _totalPlates = 0;
+  double _totalPlatesWeight = 0;
+
   Map<Plate, int> _selectedPlates = {};
+
+  BarType? _selectedBarType;
+
+  bool _oneSidedBar = false;
+  bool _maximumWeightExceeded = false;
 
   ///
   /// Funciones para widgets.
   ///
 
-  void _addPlateHandler(Plate selectedPlate) {
-    if (_totalPlates >= 7) {
-      setState(() {
-        _totalPlates += 1;
-      });
-      return;
-    }
-
+  void _changeBarHandler(BarType? newSelectedBarType) {
     setState(() {
-      _totalPlates += 1;
-      _totalWeight += selectedPlate.weightInLbs;
-      _selectedPlates = _simplifyPlates(_totalWeight);
+      _selectedBarType = newSelectedBarType;
+    });
+  }
+
+  void _addPlateHandler(Plate selectedPlate) {
+    setState(() {
+      if (_totalPlatesWeight + selectedPlate.weightInLbs <=
+          maximumAllowedWeight) {
+        _totalPlatesWeight += selectedPlate.weightInLbs;
+        _selectedPlates = _simplifyPlates(_totalPlatesWeight);
+      } else {
+        _maximumWeightExceeded = true;
+      }
     });
   }
 
   void _resetCalculator() {
     setState(() {
       _selectedPlates = {};
-      _totalWeight = 0;
-      _totalPlates = 0;
+      _totalPlatesWeight = 0;
     });
   }
 
@@ -66,7 +75,7 @@ class _PlateCalculatorState extends State<PlateCalculator> {
         return Plate2Dot5();
     }
 
-    throw Exception("No such plate.");
+    throw Exception("No Such Plate.");
   }
 
   Map<Plate, int> _simplifyPlates(double targetWeight) {
@@ -79,10 +88,11 @@ class _PlateCalculatorState extends State<PlateCalculator> {
       weights.add((plate.weightInLbs * 10).toInt());
     }
 
-    int mappedTargetWeight = targetWeight.toInt() * 10;
+    int mappedTargetWeight = (targetWeight * 10).toInt();
     final usedPlates = List.generate(mappedTargetWeight + 1, (_) => -1);
 
-    final dp = List.generate(mappedTargetWeight + 1, (_) => mappedTargetWeight + 1);
+    final dp =
+        List.generate(mappedTargetWeight + 1, (_) => mappedTargetWeight + 1);
     dp[0] = 0;
 
     for (int i = 0; i < mappedTargetWeight + 1; i++) {
@@ -95,7 +105,7 @@ class _PlateCalculatorState extends State<PlateCalculator> {
     }
 
     if (dp[mappedTargetWeight] > mappedTargetWeight) {
-      return {};
+      throw Exception("Invalid Weight.");
     }
 
     Map<Plate, int> solution = {};
@@ -113,39 +123,34 @@ class _PlateCalculatorState extends State<PlateCalculator> {
 
   @override
   Widget build(BuildContext context) {
-    bool isWeightNotAllowed = _totalPlates > 7;
-    bool barIsEmpty = _totalPlates == 0;
+    double totalWeight =
+        (_oneSidedBar ? _totalPlatesWeight : 2 * _totalPlatesWeight) +
+            (barWeights[_selectedBarType] ?? 0);
 
-    final titleText = barIsEmpty
-        ? const Text(
-            "Add a plate",
+    final titleText = _maximumWeightExceeded
+        ? Text(
+            "Wow! You are too strong for the calculator.",
+            textAlign: TextAlign.center,
             style: TextStyle(
               fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.error,
             ),
           )
-        : isWeightNotAllowed
-            ? Text(
-                "Weight not allowed.",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).colorScheme.error,
-                ),
-              )
-            : RichText(
-                text: TextSpan(
-                  text: "Total Weight: ",
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                  children: [
-                    TextSpan(
-                        text: "${_totalWeight.toStringAsFixed(2)} units.",
-                        style: const TextStyle(
-                          fontWeight: FontWeight.normal,
-                        )),
-                  ],
-                ),
-              );
+        : RichText(
+            text: TextSpan(
+              text: "Total Weight: ",
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+              children: [
+                TextSpan(
+                    text: "${totalWeight.toStringAsFixed(2)} units.",
+                    style: const TextStyle(
+                      fontWeight: FontWeight.normal,
+                    )),
+              ],
+            ),
+          );
 
     return AlertDialog(
       title: const Text(
@@ -162,12 +167,31 @@ class _PlateCalculatorState extends State<PlateCalculator> {
               titleText,
               WeightVisualizer(
                 selectedPlates: _selectedPlates,
-                selectedBarWeight: 7.5,
+                selectedBarWeight: barWeights[_selectedBarType] ?? 0,
               ),
-              const SizedBox(height: 8),
               PlatesSelector(onAddPlate: _addPlateHandler),
               const Divider(),
-              const BarSelector(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("One Side"),
+                  const SizedBox(width: 8),
+                  Switch(
+                    value: !_oneSidedBar,
+                    onChanged: (bool value) {
+                      setState(() {
+                        _oneSidedBar = !value;
+                      });
+                    },
+                  ),
+                  const SizedBox(width: 8),
+                  const Text("Two Sides"),
+                ],
+              ),
+              BarSelector(
+                selectedBarType: _selectedBarType,
+                onBarChange: _changeBarHandler,
+              ),
             ],
           ),
         ),
@@ -179,13 +203,13 @@ class _PlateCalculatorState extends State<PlateCalculator> {
         ),
         TextButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            Navigator.pop(context, null);
           },
           child: const Text("Cancel"),
         ),
         TextButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            Navigator.pop(context, totalWeight);
           },
           child: const Text("Done"),
         ),
